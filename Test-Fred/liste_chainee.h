@@ -12,6 +12,7 @@ typedef struct Liste Liste;
 struct Liste
 {
 	Element *premier;
+	int nbElements; /*ajout du compteur d elements*/
 };
 
 void insertion(Liste *liste, int nvNombre);
@@ -20,5 +21,7 @@ void afficherListe(Liste *liste);
 Liste *initialisation();
 void insertMiddle(Liste *liste, int nvNombre, Element *precedent);
 void suppMiddle(Liste *liste, Element *precedent);
+void destruction(Liste *liste);
+int taille(Liste *liste);
 
 #endif

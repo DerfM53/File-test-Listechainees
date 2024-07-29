@@ -31,6 +31,9 @@ void insertion(Liste *liste, int nvNombre)
     /* Insertion de l'élément au début de la liste */
     nouveau->suivant = liste->premier;
     liste->premier = nouveau;
+
+    /*incremente le compteur d elements*/
+    liste->nbElements++;
 }
 void insertMiddle(Liste *liste, int nvNombre, Element *precedent)
 {
@@ -76,7 +79,28 @@ void suppression(Liste *liste)
         Element *aSupprimer = liste->premier;
         liste->premier = liste->premier->suivant;
         free(aSupprimer);
+
+	/*Decremente le compteur d elements*/
+	liste->nbElements--;
     }
+}
+void destruction(Liste *liste)
+{
+	if (liste == NULL)
+	{
+		exit(EXIT_FAILURE);
+	}
+
+	Element *destructeur = liste->premier;
+
+	while (destructeur != NULL)
+	{
+		Element *temp = destructeur;
+		destructeur = destructeur->suivant;
+		free(temp);
+	}
+	liste->premier = NULL;
+	printf("La liste est supprime�\n");
 }
 void afficherListe(Liste *liste)
 {
@@ -93,4 +117,13 @@ void afficherListe(Liste *liste)
         actuel = actuel->suivant;
     }
     printf("NULL\n");
+}
+int taille(Liste *liste)
+{
+	if (liste == NULL)
+	{
+		return 0; /* ou une autre valeur indiquant une erreur*/
+	}
+
+	return liste->nbElements;
 }

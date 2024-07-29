@@ -1,18 +1,23 @@
 #include "liste_chainee.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 int main()
 {
-	Liste *maListe = initialisation();
+    Liste *maListe = initialisation();
+    insertion(maListe, 4);
+    insertion(maListe, 8);
+    insertion(maListe, 15);
+    
+    printf("Taille de la liste : %d\n", taille(maListe)); // Affiche la taille actuelle de la liste
 
-	insertion(maListe, 4);
-	insertion(maListe, 8);
-	insertion(maListe, 15);
-	insertMiddle(maListe, 22, maListe->premier->suivant);
-	suppMiddle(maListe, maListe->premier);
+    suppression(maListe);
+    
+    printf("Taille de la liste après suppression : %d\n", taille(maListe)); // Affiche la taille après suppression
 
-	afficherListe(maListe);
+    destruction(maListe);
+    free(maListe); // Libération de la structure de la liste
 
-	return 0;
+    return 0;
 }
 
